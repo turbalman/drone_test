@@ -103,7 +103,7 @@ local pipeline(branch, instance) = {
     kind: 'pipeline',
     type: 'kubernetes',
     name: branch,
-    steps: if branch=="dev" then [
+    steps: if branch=="main" then [
         code_style_check(branch, "Test", "bitnami/jsonnet", {instance: instance, event: ["push"]})
     ] else [
     ],
@@ -114,9 +114,9 @@ local pipeline(branch, instance) = {
 };
 
 local dev_drone = ["dev-drone"];
-local prod_drone = ["prod-drone"];
+local main_drone = ["main-drone"];
 
 [
     pipeline(branch="dev", instance=dev_drone),
-    pipeline(branch="prod", instance=prod_drone)
+    pipeline(branch="main", instance=main_drone)
 ]
