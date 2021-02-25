@@ -2,7 +2,7 @@ local code_style_check(branch, name, image, when) = {
     name: name,
     image:image,
     commands: [
-        "echo hello world",
+        'echo "add a list of commands for code style check here"',
     ],
     when: when
 };
@@ -105,9 +105,8 @@ local pipeline(branch) = {
     type: 'docker',
     name: branch,
     steps: if branch=="main" then [
-        code_style_check(branch, "Test", "bitnami/jsonnet", {event: ["push"]})
+        code_style_check(branch, "code_style_check", "bitnami/jsonnet", {event: ["push"]})
     ] else [
-        code_style_check(branch, "Test", "bitnami/jsonnet", {event: ["push"]})
     ],
     trigger: {
         branch: branch
