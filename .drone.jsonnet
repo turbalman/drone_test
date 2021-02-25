@@ -107,7 +107,7 @@ local deploy(branch, name, image, when) = {
     when: when,
 };
 
-local pipeline(branch, type， repo, dockerfile) = {
+local pipeline(branch, type, repo, dockerfile) = {
     kind: 'pipeline',
     type: 'docker',
     name: branch,
