@@ -113,8 +113,8 @@ local pipeline(branch, instance) = {
     image_pull_secrets: ["dockerconfigjson"]
 };
 
-local dev_drone = ["dev-drone"]
-local prod_drone = ["prod-drone"]
+local dev_drone = ["dev-drone"];
+local prod_drone = ["prod-drone"];
 
 [
     pipeline(branch="dev", instance=dev_drone),
