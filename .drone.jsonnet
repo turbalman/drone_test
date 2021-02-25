@@ -11,7 +11,8 @@ local code_duplication_check(branch, name, image, when) = {
     name: name,
     image:image,
     commands: [
-    ],
+           'echo "add a list of commands for code duplication check here"',
+ ],
     when: when
 };
 
@@ -19,7 +20,8 @@ local code_bug_check(branch, name, image, when) = {
     name: name,
     image:image,
     commands: [
-    ],
+           'echo "add a list of commands for code bug check here"',
+ ],
     when: when
 };
 
@@ -27,7 +29,8 @@ local unit_test(branch, name, image, when) = {
     name: name,
     image:image,
     commands: [
-    ],
+          'echo "add a list of commands for unit test here"',
+  ],
     when: when
 };
 
@@ -35,7 +38,8 @@ local integration_test(branch, name, image, when) = {
     name: name,
     image:image,
     commands: [
-    ],
+         'echo "add a list of commands for integration test here"',
+   ],
     when: when
 };
 
@@ -43,7 +47,8 @@ local pressure_test(branch, name, image, when) = {
     name: name,
     image:image,
     commands: [
-    ],
+         'echo "add a list of commands for pressure test here"',
+   ],
     when: when
 };
 
@@ -51,7 +56,8 @@ local regression_test(branch, name, image, when) = {
     name: name,
     image:image,
     commands: [
-    ],
+         'echo "add a list of commands for regression test here"',
+   ],
     when: when
 };
 local build(branch, name, image, when) = {
@@ -59,6 +65,7 @@ local build(branch, name, image, when) = {
     image:image,
     pull: "always",
     commands: [
+           'echo "add a list of commands for build here"',
     ],
     when: when
 };
@@ -87,10 +94,10 @@ local publish(branch, name, image, when, repo, dockerfile) = {
 
 local deploy(branch, name, image, when) = {
     name: name,
-    image:image,
+    image: image,
     pull: "always",
     commands: [
-        "kubectl get all --namespace=$NAMESPACE",
+        'echo "add a list of commands for deploy here"',
      ],
     environment: {
         CLUSTER_NAME: {
@@ -100,13 +107,22 @@ local deploy(branch, name, image, when) = {
     when: when,
 };
 
-local pipeline(branch) = {
+local pipeline(branch, type) = {
     kind: 'pipeline',
     type: 'docker',
     name: branch,
     steps: if branch=="main" then [
-        code_style_check(branch, "code_style_check", "bitnami/jsonnet", {event: ["push"]})
-    ] else [
+        code_style_check(branch, "code_style_check", "bitnami/jsonnet", {event: ["push"]}),
+        code_duplication_check(branch, "code_duplication_check", "bitnami/jsonnet", {event: ["push"]}),
+        code_bug_check(branch, "code_bug_check", "bitnami/jsonnet", {event: ["push"]}),
+        unit_test(branch, "unit_test", "bitnami/jsonnet", {event: ["push"]}),
+        integration_test(branch, "integration_test", "bitnami/jsonnet", {event: ["push"]}),
+        pressure_test(branch, "pressure_test", "bitnami/jsonnet", {event: ["push"]}),
+         regression_test(branch, "regression_test", "bitnami/jsonnet", {event: ["push"]}),
+        build(branch, "build", "bitnami/jsonnet", {event: ["push"]}),
+        getImageName(branch, "getImageName", "bitnami/jsonnet", {event: ["push"]}),
+        publish(branch, "publish", "bitnami/jsonnet", {event: ["push"]}),
+        deploy(branch, "deploy", "bitnami/jsonnet", {event: ["push"]}),
     ],
     trigger: {
         branch: branch
@@ -114,8 +130,7 @@ local pipeline(branch) = {
     image_pull_secrets: ["dockerconfigjson"]
 };
 
-
+local type = "docker";
 [
-    pipeline(branch="dev"),
-    pipeline(branch="main")
+    pipeline(branch="main", type=type)
 ]
