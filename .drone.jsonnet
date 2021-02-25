@@ -102,7 +102,7 @@ local deploy(branch, name, image, when) = {
 
 local pipeline(branch) = {
     kind: 'pipeline',
-    type: 'kubernetes',
+    type: 'docker',
     name: branch,
     steps: if branch=="main" then [
         code_style_check(branch, "Test", "bitnami/jsonnet", {event: ["push"]})
