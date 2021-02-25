@@ -77,7 +77,7 @@ local getImageName(branch) = {
 local publish(branch, name, image, when, repo, dockerfile) = {
     name: name,
     image:image,
-    pull: "of-not-exist",
+    pull: "if-not-exist",
     settings: {
         username: {
             from_secret: "DOCKERHUB_USERNAME",
