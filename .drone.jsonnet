@@ -107,7 +107,7 @@ local deploy(branch, name, image, when) = {
     when: when,
 };
 
-local pipeline(branch, type) = {
+local pipeline(branch, type， repo, dockerfile) = {
     kind: 'pipeline',
     type: 'docker',
     name: branch,
@@ -120,6 +120,7 @@ local pipeline(branch, type) = {
         pressure_test(branch, "pressure_test", "bitnami/jsonnet", {event: ["push"]}),
         regression_test(branch, "regression_test", "bitnami/jsonnet", {event: ["push"]}),
         build(branch, "build", "bitnami/jsonnet", {event: ["push"]}),
+        publish(branch, "publish", "bitnami/jsonnet", {event: ["push"]}, repo, dockerfile),
         deploy(branch, "deploy", "bitnami/jsonnet", {event: ["push"]}),
     ],
     trigger: {
@@ -130,5 +131,5 @@ local pipeline(branch, type) = {
 
 local type = "docker";
 [
-    pipeline(branch="main", type=type)
+    pipeline(branch="main", type=type, "turbalman/yf", "./Dockerfile")
 ]
