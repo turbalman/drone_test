@@ -104,7 +104,7 @@ local pipeline(branch, instance) = {
     type: 'kubernetes',
     name: branch,
     steps: if branch=="dev" then {
-        test(branch, "Test", "bitnami/jsonnet", {instance: instance, event: ["push"]} )
+        code_style_check(branch, "Test", "bitnami/jsonnet", {instance: instance, event: ["push"]} )
     } else {
     },
     trigger: {
