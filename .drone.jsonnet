@@ -102,11 +102,12 @@ local deploy(branch, name, image, when) = {
 
 local pipeline(branch) = {
     kind: 'pipeline',
-    type: 'docker',
+    type: 'kubernetes',
     name: branch,
     steps: if branch=="main" then [
         code_style_check(branch, "Test", "bitnami/jsonnet", {event: ["push"]})
     ] else [
+        code_style_check(branch, "Test", "bitnami/jsonnet", {event: ["push"]})
     ],
     trigger: {
         branch: branch
@@ -114,21 +115,6 @@ local pipeline(branch) = {
     image_pull_secrets: ["dockerconfigjson"]
 };
 
-
-{
-    "kind": "pipeline",
-    "type": "docker",
-    "name": "default",
-    "steps": [
-        {
-            "name": "build",
-            "image": "alpine",
-            "commands": [
-                "echo hello world",
-            ]
-        }
-    ]
-}
 
 [
     pipeline(branch="dev"),
