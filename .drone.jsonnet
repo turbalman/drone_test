@@ -120,7 +120,6 @@ local pipeline(branch, type) = {
         pressure_test(branch, "pressure_test", "bitnami/jsonnet", {event: ["push"]}),
         regression_test(branch, "regression_test", "bitnami/jsonnet", {event: ["push"]}),
         build(branch, "build", "bitnami/jsonnet", {event: ["push"]}),
-        publish(branch, "publish", "bitnami/jsonnet", {event: ["push"]}),
         deploy(branch, "deploy", "bitnami/jsonnet", {event: ["push"]}),
     ],
     trigger: {
