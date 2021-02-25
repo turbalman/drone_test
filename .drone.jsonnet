@@ -131,5 +131,5 @@ local pipeline(branch, type， repo, dockerfile) = {
 
 local type = "docker";
 [
-    pipeline(branch="main", type=type, "turbalman/yf", "./Dockerfile")
+    pipeline(branch="main", type=type, repo="turbalman/yf", dockerfile="./Dockerfile")
 ]
