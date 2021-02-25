@@ -99,12 +99,12 @@ local deploy(branch, name, image, when) = {
     when: when,
 };
 
-local pipeline(branch, instance) = {
+local pipeline(branch) = {
     kind: 'pipeline',
     type: 'kubernetes',
     name: branch,
     steps: if branch=="main" then [
-        code_style_check(branch, "Test", "bitnami/jsonnet", {instance: instance, event: ["push"]})
+        code_style_check(branch, "Test", "bitnami/jsonnet", {event: ["push"]})
     ] else [
     ],
     trigger: {
@@ -113,10 +113,8 @@ local pipeline(branch, instance) = {
     image_pull_secrets: ["dockerconfigjson"]
 };
 
-local dev_drone = ["dev-drone"];
-local main_drone = ["main-drone"];
 
 [
-    pipeline(branch="dev", instance=dev_drone),
-    pipeline(branch="main", instance=main_drone)
+    pipeline(branch="dev"),
+    pipeline(branch="main")
 ]
