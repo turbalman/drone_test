@@ -3,7 +3,7 @@ local code_style_check(branch, name, image, when) = {
     image:image,
     commands: [
         'echo "add a list of commands for code style check here"',
-        'echo "${DRONE_BRANCH}',
+        'echo "${DRONE_BUILD_EVENT}',
  ],
     when: when
 };
@@ -132,5 +132,5 @@ local pipeline(branch, type, repo, dockerfile) = {
 
 local type = "docker";
 [
-    pipeline(branch=$DRONE_BRANCH, type=type, repo="turbalman/yf", dockerfile="./Dockerfile")
+    pipeline(branch="main", type=type, repo="turbalman/yf", dockerfile="./Dockerfile")
 ]
