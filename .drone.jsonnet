@@ -132,5 +132,5 @@ local pipeline(branch, type, repo, dockerfile) = {
 
 local type = "docker";
 [
-    pipeline(branch='${DRONE_BRANCH}', type=type, repo="turbalman/yf", dockerfile="./Dockerfile")
+    pipeline(branch="${DRONE_BRANCH}", type=type, repo="turbalman/yf", dockerfile="./Dockerfile")
 ]
