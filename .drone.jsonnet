@@ -2,10 +2,14 @@ local getBranch() = {
     branch: "${DRONE_BRANCH:0:4}"
 };
 
+local getImageName(branch) = {
+    imageName: "${DRONE_BRANCH:0:4}"
+};
+
 local code_style_check(branch, name, image, when) = {
     name: name,
     image:image,
-    commands: if getBranch().branch=="main" then [
+    commands: if getImageName(branch).imageName=="main" then [
         'echo ${DRONE_BUILD_KEY} "add a list of commands for code style check here"',
  ],
     when: when
@@ -74,9 +78,7 @@ local build(branch, name, image, when) = {
     when: when
 };
 
-local getImageName(branch) = {
-    imageName: "${DRONE_COMMIT_SHA:0:7}"
-};
+
 
 local publish(branch, name, when, repo, dockerfile) = {
     name: name,
