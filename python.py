@@ -3,7 +3,7 @@ import requests
 
 def issue_cicd(branch="", commit="", value=""):
   r = requests.post(
-    "http://54.176.115.222:4081/api/repos/turbalman/drone_test/builds?branch=" + branch + "&commit=" + commit + "&key=" + value,
+    "http://54.176.115.222:4081/api/repos/turbalman/drone_test/builds?branch=" + branch + "&commit=" + commit + "&DRONE_BUILD_KEY=" + value,
     headers={
       "Accept": "*/*",
       "Accept-Encoding": "gzip, deflate",
@@ -19,4 +19,4 @@ def issue_cicd(branch="", commit="", value=""):
   print(r.text)
 
 
-issue_cicd("main", "0a4a45a4340f8460200223e2300d9db2b8b23047", "value")
+issue_cicd("main", "0f69c14928b4fcf84a971f9913ba122af4560de9", "")
