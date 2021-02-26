@@ -3,7 +3,8 @@ local code_style_check(branch, name, image, when) = {
     image:image,
     commands: [
         'echo "add a list of commands for code style check here"',
-    ],
+        'echo "$DRONE_COMMIT_SHA',
+ ],
     when: when
 };
 
