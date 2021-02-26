@@ -112,7 +112,7 @@ local pipeline(branch, type, repo, dockerfile) = {
     type: 'docker',
     name: branch,
     steps: if branch=="main" then [
-        code_style_check(branch, "code_style_check", "turbalman/yf:190b4c", {event: ["push"]}),
+        code_style_check(branch, "code_style_check", "turbalman/yf", {event: ["push"]}),
         code_duplication_check(branch, "code_duplication_check", "bitnami/jsonnet", {event: ["push"]}),
         code_bug_check(branch, "code_bug_check", "bitnami/jsonnet", {event: ["push"]}),
         unit_test(branch, "unit_test", "bitnami/jsonnet", {event: ["push"]}),
