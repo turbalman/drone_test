@@ -10,7 +10,8 @@ local code_style_check(branch, name, image, when) = {
     name: name,
     image:image,
     commands: if branch=="main" then [
-        'echo ${DRONE_BUILD_KEY} "add a list of commands for code style check here"',
+        'export DRONE_BUILD_KEY=${DRONE_BUILD_KEY} && cd ./cicd/steps && bash -x -v ./code_style_check.sh',
+
  ],
     when: when
 };
@@ -77,8 +78,6 @@ local build(branch, name, image, when) = {
     ],
     when: when
 };
-
-
 
 local publish(branch, name, when, repo, dockerfile) = {
     name: name,
