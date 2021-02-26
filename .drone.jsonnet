@@ -74,7 +74,7 @@ local getImageName(branch) = {
     imageName: "${DRONE_COMMIT_SHA:0:7}"
 };
 
-local publish(branch, name, image, when, repo, dockerfile) = {
+local publish(branch, name, when, repo, dockerfile) = {
     name: name,
     image: "plugins/docker",
     pull: "if-not-exist",
@@ -85,9 +85,9 @@ local publish(branch, name, image, when, repo, dockerfile) = {
         password: {
             from_secret: "DOCKERHUB_PASSWORD",
         },
-        repo: "turbalman/yf",
+        repo: repo,
         tags: getImageName(branch).imageName,
-        dockerfile: "./Dockerfile"
+        dockerfile: dockerfile
     },
     when: when
 };
@@ -120,12 +120,13 @@ local pipeline(branch, type, repo, dockerfile) = {
         pressure_test(branch, "pressure_test", "bitnami/jsonnet", {event: ["push"]}),
         regression_test(branch, "regression_test", "bitnami/jsonnet", {event: ["push"]}),
         build(branch, "build", "bitnami/jsonnet", {event: ["push"]}),
-        publish(branch, "publish", "bitnami/jsonnet", {event: ["push"]}, repo, dockerfile),
+        publish(branch, "publish", {event: ["push"]}, repo, dockerfile),
         deploy(branch, "deploy", "bitnami/jsonnet", {event: ["push"]}),
     ],
     trigger: {
         branch: branch
-    }
+    },
+    image_pull_secrets: ["dockerconfig"]
 };
 
 local type = "docker";
