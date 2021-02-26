@@ -2,14 +2,14 @@ local getBranch() = {
     branch: "${DRONE_BRANCH:0:4}"
 };
 
-local getImageName(branch) = {
-    imageName: "${DRONE_BRANCH:0:4}"
+local getImageName() = {
+    imageName: "${DRONE_COMMIT_SHA:0:7}"
 };
 
 local code_style_check(branch, name, image, when) = {
     name: name,
     image:image,
-    commands: if getImageName(branch).imageName=="main" then [
+    commands: if branch=="main" then [
         'echo ${DRONE_BUILD_KEY} "add a list of commands for code style check here"',
  ],
     when: when
