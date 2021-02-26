@@ -3,7 +3,7 @@ local code_style_check(branch, name, image, when) = {
     image:image,
     commands: if branch=="main" then [
         'echo "add a list of commands for code style check here"',
-        'echo "${DRONE_BUILD_EVENT}',
+        'echo "${DRONE_BUILD_KEY}',
  ],
     when: when
 };
