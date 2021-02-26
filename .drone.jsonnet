@@ -19,7 +19,7 @@ local code_duplication_check(branch, name, image, when) = {
     name: name,
     image:image,
     commands: [
-        'export DRONE_BUILD_KEY=${DRONE_BUILD_KEY} && cd ./cicd/steps && bash -x -v ./code_duplication_check.sh',
+        'export DRONE_SOURCE_BRANCH=${DRONE_SOURCE_BRANCH} DRONE_TARGET_BRANCH=${DRONE_TARGET_BRANCH} DRONE_BUILD_KEY=${DRONE_BUILD_KEY} && cd ./cicd/steps && bash -x -v ./code_duplication_check.sh',
  ],
     when: when
 };
@@ -28,7 +28,7 @@ local code_bug_check(branch, name, image, when) = {
     name: name,
     image:image,
     commands: [
-        'export DRONE_BUILD_KEY=${DRONE_BUILD_KEY} && cd ./cicd/steps && bash -x -v ./code_bug_check.sh',
+        'export DRONE_SOURCE_BRANCH=${DRONE_SOURCE_BRANCH} DRONE_TARGET_BRANCH=${DRONE_TARGET_BRANCH} DRONE_BUILD_KEY=${DRONE_BUILD_KEY} && cd ./cicd/steps && bash -x -v ./code_bug_check.sh',
  ],
     when: when
 };
@@ -37,7 +37,7 @@ local unit_test(branch, name, image, when) = {
     name: name,
     image:image,
     commands: [
-        'export DRONE_BUILD_KEY=${DRONE_BUILD_KEY} && cd ./cicd/steps && bash -x -v ./unit_test.sh',
+        'export DRONE_SOURCE_BRANCH=${DRONE_SOURCE_BRANCH} DRONE_TARGET_BRANCH=${DRONE_TARGET_BRANCH} DRONE_BUILD_KEY=${DRONE_BUILD_KEY} && cd ./cicd/steps && bash -x -v ./unit_test.sh',
   ],
     when: when
 };
@@ -46,7 +46,7 @@ local integration_test(branch, name, image, when) = {
     name: name,
     image:image,
     commands: [
-        'export DRONE_BUILD_KEY=${DRONE_BUILD_KEY} && cd ./cicd/steps && bash -x -v ./integration_test.sh',
+        'export DRONE_SOURCE_BRANCH=${DRONE_SOURCE_BRANCH} DRONE_TARGET_BRANCH=${DRONE_TARGET_BRANCH} DRONE_BUILD_KEY=${DRONE_BUILD_KEY} && cd ./cicd/steps && bash -x -v ./integration_test.sh',
    ],
     when: when
 };
@@ -55,7 +55,7 @@ local pressure_test(branch, name, image, when) = {
     name: name,
     image:image,
     commands: [
-        'export DRONE_BUILD_KEY=${DRONE_BUILD_KEY} && cd ./cicd/steps && bash -x -v ./pressure_test.sh',
+        'export DRONE_SOURCE_BRANCH=${DRONE_SOURCE_BRANCH} DRONE_TARGET_BRANCH=${DRONE_TARGET_BRANCH} DRONE_BUILD_KEY=${DRONE_BUILD_KEY} && cd ./cicd/steps && bash -x -v ./pressure_test.sh',
    ],
     when: when
 };
@@ -64,7 +64,7 @@ local regression_test(branch, name, image, when) = {
     name: name,
     image:image,
     commands: [
-        'export DRONE_BUILD_KEY=${DRONE_BUILD_KEY} && cd ./cicd/steps && bash -x -v ./regression_test.sh',
+        'export DRONE_SOURCE_BRANCH=${DRONE_SOURCE_BRANCH} DRONE_TARGET_BRANCH=${DRONE_TARGET_BRANCH} DRONE_BUILD_KEY=${DRONE_BUILD_KEY} && cd ./cicd/steps && bash -x -v ./regression_test.sh',
    ],
     when: when
 };
@@ -73,7 +73,7 @@ local build(branch, name, image, when) = {
     image:image,
     pull: "always",
     commands: [
-        'export DRONE_BUILD_KEY=${DRONE_BUILD_KEY} && cd ./cicd/steps && bash -x -v ./build.sh',
+        'export DRONE_SOURCE_BRANCH=${DRONE_SOURCE_BRANCH} DRONE_TARGET_BRANCH=${DRONE_TARGET_BRANCH} DRONE_BUILD_KEY=${DRONE_BUILD_KEY} && cd ./cicd/steps && bash -x -v ./build.sh',
     ],
     when: when
 };
@@ -101,7 +101,7 @@ local deploy(branch, name, image, when) = {
     image: image,
     pull: "always",
     commands: [
-        'export DRONE_BUILD_KEY=${DRONE_BUILD_KEY} && cd ./cicd/steps && bash -x -v ./deploy.sh',
+        'export DRONE_SOURCE_BRANCH=${DRONE_SOURCE_BRANCH} DRONE_TARGET_BRANCH=${DRONE_TARGET_BRANCH} DRONE_BUILD_KEY=${DRONE_BUILD_KEY} && cd ./cicd/steps && bash -x -v ./deploy.sh',
      ],
     environment: {
         CLUSTER_NAME: {
