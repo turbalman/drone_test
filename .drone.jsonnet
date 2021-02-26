@@ -2,7 +2,7 @@ local code_style_check(branch, name, image, when) = {
     name: name,
     image:image,
     commands: if branch=="main" then [
-        'echo $DRONE_BUILD_KEY "add a list of commands for code style check here"',
+        'echo ${DRONE_BUILD_KEY} "add a list of commands for code style check here"',
  ],
     when: when
 };
