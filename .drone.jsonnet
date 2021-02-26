@@ -10,8 +10,7 @@ local code_style_check(branch, name, image, when) = {
     name: name,
     image:image,
     commands: [
-        'echo ${DRONE_SOURCE_BRANCH} ${DRONE_TARGET_BRANCH}',
-        'export DRONE_BUILD_KEY=${DRONE_BUILD_KEY} && cd ./cicd/steps && bash -x -v ./code_style_check.sh',
+        'export DRONE_SOURCE_BRANCH=${DRONE_SOURCE_BRANCH} DRONE_TARGET_BRANCH=${DRONE_TARGET_BRANCH} DRONE_BUILD_KEY=${DRONE_BUILD_KEY} && cd ./cicd/steps && bash -x -v ./code_style_check.sh',
     ],
     when: when
 };
