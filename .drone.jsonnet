@@ -9,10 +9,10 @@ local getImageName() = {
 local code_style_check(branch, name, image, when) = {
     name: name,
     image:image,
-    commands: if branch=="main" then [
+    commands: [
+        'echo ${DRONE_SOURCE_BRANCH} ${DRONE_TARGET_BRANCH}'，
         'export DRONE_BUILD_KEY=${DRONE_BUILD_KEY} && cd ./cicd/steps && bash -x -v ./code_style_check.sh',
-
- ],
+    ],
     when: when
 };
 
@@ -20,7 +20,7 @@ local code_duplication_check(branch, name, image, when) = {
     name: name,
     image:image,
     commands: [
-           'echo "add a list of commands for code duplication check here"',
+        'export DRONE_BUILD_KEY=${DRONE_BUILD_KEY} && cd ./cicd/steps && bash -x -v ./code_duplication_check.sh',
  ],
     when: when
 };
@@ -29,7 +29,7 @@ local code_bug_check(branch, name, image, when) = {
     name: name,
     image:image,
     commands: [
-           'echo "add a list of commands for code bug check here"',
+        'export DRONE_BUILD_KEY=${DRONE_BUILD_KEY} && cd ./cicd/steps && bash -x -v ./code_bug_check.sh',
  ],
     when: when
 };
@@ -38,7 +38,7 @@ local unit_test(branch, name, image, when) = {
     name: name,
     image:image,
     commands: [
-          'echo "add a list of commands for unit test here"',
+        'export DRONE_BUILD_KEY=${DRONE_BUILD_KEY} && cd ./cicd/steps && bash -x -v ./unit_test.sh',
   ],
     when: when
 };
@@ -47,7 +47,7 @@ local integration_test(branch, name, image, when) = {
     name: name,
     image:image,
     commands: [
-         'echo "add a list of commands for integration test here"',
+        'export DRONE_BUILD_KEY=${DRONE_BUILD_KEY} && cd ./cicd/steps && bash -x -v ./integration_test.sh',
    ],
     when: when
 };
@@ -56,7 +56,7 @@ local pressure_test(branch, name, image, when) = {
     name: name,
     image:image,
     commands: [
-         'echo "add a list of commands for pressure test here"',
+        'export DRONE_BUILD_KEY=${DRONE_BUILD_KEY} && cd ./cicd/steps && bash -x -v ./pressure_test.sh',
    ],
     when: when
 };
@@ -65,7 +65,7 @@ local regression_test(branch, name, image, when) = {
     name: name,
     image:image,
     commands: [
-         'echo "add a list of commands for regression test here"',
+        'export DRONE_BUILD_KEY=${DRONE_BUILD_KEY} && cd ./cicd/steps && bash -x -v ./regression_test.sh',
    ],
     when: when
 };
@@ -74,7 +74,7 @@ local build(branch, name, image, when) = {
     image:image,
     pull: "always",
     commands: [
-           'echo "add a list of commands for build here"',
+        'export DRONE_BUILD_KEY=${DRONE_BUILD_KEY} && cd ./cicd/steps && bash -x -v ./build.sh',
     ],
     when: when
 };
@@ -102,7 +102,7 @@ local deploy(branch, name, image, when) = {
     image: image,
     pull: "always",
     commands: [
-        'echo "add a list of commands for deploy here"',
+        'export DRONE_BUILD_KEY=${DRONE_BUILD_KEY} && cd ./cicd/steps && bash -x -v ./deploy.sh',
      ],
     environment: {
         CLUSTER_NAME: {
@@ -117,7 +117,7 @@ local pipeline(branch, type, repo, dockerfile) = {
     type: type,
     name: branch,
     steps: if branch=="main" then [
-        code_style_check(branch, "code_style_check", "turbalman/yf", {event: ["push", "custom"]}),
+        code_style_check(branch, "code_style_check", "turbalman/yf", {event: ["custom"]}),
         code_duplication_check(branch, "code_duplication_check", "bitnami/jsonnet", {event: ["custom"]}),
         code_bug_check(branch, "code_bug_check", "bitnami/jsonnet", {event: ["custom"]}),
         unit_test(branch, "unit_test", "bitnami/jsonnet", {event: ["custom"]}),

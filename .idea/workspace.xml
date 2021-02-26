@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c1f0839e-fcab-4df4-891e-b6b03a43f620" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/cicd/steps/build.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cicd/steps/code_bug_check.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cicd/steps/code_duplication_check.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cicd/steps/deploy.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cicd/steps/integration_test.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cicd/steps/pressure_test.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cicd/steps/regression_test.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cicd/steps/unit_test.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.drone.jsonnet" beforeDir="false" afterPath="$PROJECT_DIR$/.drone.jsonnet" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cicd/steps/code_style_check.sh" beforeDir="false" afterPath="$PROJECT_DIR$/cicd/steps/code_style_check.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python.py" beforeDir="false" afterPath="$PROJECT_DIR$/python.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1p2LDkbeP8QRE5qTZrM3Y6luxQx" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c1f0839e-fcab-4df4-891e-b6b03a43f620" name="Default Changelist" comment="" />
+      <created>1614376121245</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1614376121245</updated>
+    </task>
+    <servers />
+  </component>
+</project>
