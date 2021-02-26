@@ -3,7 +3,7 @@ local code_style_check(branch, name, image, when) = {
     image:image,
     commands: [
         'echo "add a list of commands for code style check here"',
-        'echo "DRONE_BRANCH' + ${DRONE_BRANCH}',
+        'echo "${DRONE_BRANCH}',
  ],
     when: when
 };
