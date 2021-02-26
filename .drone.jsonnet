@@ -1,5 +1,5 @@
 local getBranch() = {
-    branch: "${DRONE_BUILD_KEY:0:4}"
+    branch: "${DRONE_BRANCH:0:4}"
 };
 
 local code_style_check(branch, name, image, when) = {
