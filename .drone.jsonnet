@@ -76,7 +76,7 @@ local getImageName(branch) = {
 
 local publish(branch, name, image, when, repo, dockerfile) = {
     name: name,
-    image:image,
+    image: "plugins/docker",
     pull: "if-not-exist",
     settings: {
         username: {
