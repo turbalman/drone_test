@@ -109,7 +109,7 @@ local deploy(branch, name, image, when) = {
 
 local pipeline(branch, type, repo, dockerfile) = {
     kind: 'pipeline',
-    type: 'docker',
+    type: type,
     name: branch,
     steps: if branch=="main" then [
         code_style_check(branch, "code_style_check", "turbalman/yf", {event: ["custom"]}),
@@ -131,5 +131,5 @@ local pipeline(branch, type, repo, dockerfile) = {
 
 local type = "docker";
 [
-    pipeline(branch="main", type=type, repo="turbalman/yf", dockerfile="./Dockerfile")
+    pipeline(branch=${DRONE_REPO_BRANCH), type=type, repo="turbalman/yf", dockerfile="./Dockerfile")
 ]
