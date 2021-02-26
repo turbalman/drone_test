@@ -86,7 +86,7 @@ local publish(branch, name, when, repo, dockerfile) = {
             from_secret: "DOCKERHUB_PASSWORD",
         },
         repo: repo,
-        tags: latest,
+        tags: "latest",
         dockerfile: dockerfile
     },
     when: when
