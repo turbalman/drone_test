@@ -91,7 +91,7 @@ local publish(branch, name, when, repo, dockerfile) = {
             from_secret: "DOCKERHUB_PASSWORD",
         },
         repo: repo,
-        tags: getImageName(branch).imageName,
+        tags: getImageName().imageName,
         dockerfile: dockerfile
     },
     when: when
