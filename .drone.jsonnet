@@ -85,9 +85,9 @@ local publish(branch, name, image, when, repo, dockerfile) = {
         password: {
             from_secret: "DOCKERHUB_PASSWORD",
         },
-        repo: repo,
+        repo: "turbalman/yf",
         tags: getImageName(branch).imageName,
-        dockerfile: dockerfile
+        dockerfile: "./Dockerfile"
     },
     when: when
 };
@@ -125,8 +125,7 @@ local pipeline(branch, type, repo, dockerfile) = {
     ],
     trigger: {
         branch: branch
-    },
-    image_pull_secrets: ["dockerconfigjson"]
+    }
 };
 
 local type = "docker";
